@@ -1,64 +1,33 @@
-## Compose sample application
+Aplikasi Prediksi Kelulusan Sederhana Menggunakan Algoritma KNN
 
-### Use with Docker Development Environments
+Project ini dibuat degan menggunakan Docker Container Manager untuk menjalankan aplikasi Flask.
 
-You can open this sample in the Dev Environments feature of Docker Desktop version 4.12 or later.
+Pra-syarat:
+- Pastikan sistem Anda telah memiliki Docker terpasang sebelum melanjutkan. Anda dapat mengunduh dan menginstal Docker dari situs resmi mereka: https://www.docker.com/
 
-[Open in Docker Dev Environments <img src="../open_in_new.svg" alt="Open in Docker Dev Environments" align="top"/>](https://open.docker.com/dashboard/dev-envs?url=https://github.com/docker/awesome-compose/tree/master/flask)
+Langkah-langkah:
 
-### Python/Flask application
+1. Klon repositori ini:
+   - Gunakan perintah `git clone <URL repositori>` untuk mengklon repositori.
 
-Project structure:
-```
-.
-├── compose.yaml
-├── app
-    ├── Dockerfile
-    ├── requirements.txt
-    └── app.py
+2. Pindah ke direktori proyek:
+   - Gunakan perintah `cd docker-flask-project` untuk pindah ke direktori proyek.
 
-```
+3. Bangun dan jalankan kontainer Docker:
+   - Gunakan perintah `docker-compose up --build` untuk membangun dan menjalankan kontainer Docker.
+   - Perintah di atas akan membangun kontainer Docker dan menjalankan aplikasi Flask di dalamnya. Jika ini adalah pertama kalinya Anda menjalankan perintah ini, Docker akan mengunduh dan membangun gambar Docker yang diperlukan terlebih dahulu.
 
-[_compose.yaml_](compose.yaml)
-```
-services: 
-  web: 
-    build:
-     context: app
-     target: builder
-    ports: 
-      - '8000:8000'
-```
+4. Akses aplikasi:
+   - Setelah perintah `docker-compose up` berhasil dijalankan, aplikasi Flask dapat diakses melalui browser web di http://localhost:5000.
 
-## Deploy with docker compose
+5. Berhenti menjalankan kontainer:
+   - Untuk menghentikan kontainer Docker yang sedang berjalan, cukup tekan `Ctrl+C` di terminal tempat Anda menjalankan perintah `docker-compose up`.
+   - Jika Anda ingin menghapus kontainer yang berjalan, gunakan perintah `docker-compose down`.
 
-```
-$ docker compose up -d
-[+] Building 1.1s (16/16) FINISHED
- => [internal] load build definition from Dockerfile                                                                                                                                                                                       0.0s
-    ...                                                                                                                                         0.0s
- => => naming to docker.io/library/flask_web                                                                                                                                                                                               0.0s
-[+] Running 2/2
- ⠿ Network flask_default  Created                                                                                                                                                                                                          0.0s
- ⠿ Container flask-web-1  Started
-```
+Aplikasi ini juga dapat dijalankan langsung dengan running file `app.py` jangan lupa untuk menginstall library dalam file `requirements.txt` dengan menjalankan perintah `pip install -r app/requirements.txt`
 
-## Expected result
+Kontribusi:
+- Jika Anda ingin berkontribusi pada proyek ini, Anda dapat melakukan fork repositori ini, melakukan perubahan yang diinginkan, dan mengajukan pull request ke repositori utama.
 
-Listing containers must show one container running and the port mapping as below:
-```
-$ docker compose ps
-NAME                COMMAND             SERVICE             STATUS              PORTS
-flask-web-1         "python3 app.py"    web                 running             0.0.0.0:8000->8000/tcp
-```
-
-After the application starts, navigate to `http://localhost:8000` in your web browser or run:
-```
-$ curl localhost:8000
-Hello World!
-```
-
-Stop and remove the containers
-```
-$ docker compose down
-```
+Lisensi:
+- Proyek ini dilisensikan di bawah MIT License. Silakan lihat berkas LICENSE untuk informasi lebih lanjut.
